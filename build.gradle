@@ -1,0 +1,130 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.9'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.affycloud'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    implementation 'org.modelmapper:modelmapper:3.2.0'
+    implementation 'io.beanmapper:beanmapper-spring-boot-starter:2.3.0'
+
+    /* JWT dependency */
+//    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+//    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+//    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
+    /* Bcrypt implementation */
+    implementation 'at.favre.lib:bcrypt:0.10.2'
+
+    /* Swagger */
+//    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+
+// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.11'
+
+    /* Logger */
+    implementation 'log4j:log4j:1.2.17'
+
+
+
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'org.hibernate.validator:hibernate-validator:6.0.13.Final'
+
+    /* Cloudinary */
+    implementation 'com.cloudinary:cloudinary-http44:1.29.0'
+
+    /* Razorapay */
+    implementation 'com.razorpay:razorpay-java:1.4.3'
+
+
+    /* For Email and Caches */
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'  // For sending emails
+    implementation 'org.springframework.boot:spring-boot-starter-cache' // For caching
+    implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8' // Optional Caffeine cache for in-memory cache
+
+    /* Websocket dependencies. */
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    /* fire-base dependencies. */
+    implementation 'com.google.firebase:firebase-admin:9.2.0'
+
+
+    /* Spring Security dependency */
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+
+    /* Commenting out unused dependencies. */
+//	implementation 'org.springframework.boot:spring-boot-starter-mail'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+
+    // Google API Client
+    implementation 'com.google.api-client:google-api-client:2.4.0'
+    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.34.1'
+    implementation 'com.google.apis:google-api-services-drive:v3-rev20231128-2.0.0'
+
+    // AWS SDK v2 for S3
+    implementation 'software.amazon.awssdk:s3:2.25.5'
+    implementation 'software.amazon.awssdk:auth:2.25.5'
+    implementation 'software.amazon.awssdk:regions:2.25.5'
+
+    // Invoice PNG generation (pure Java — no Node/Puppeteer required)
+    implementation 'com.openhtmltopdf:openhtmltopdf-core:1.0.10'
+    implementation 'com.openhtmltopdf:openhtmltopdf-java2d:1.0.10'
+
+    // Certificate generation: XDocReport/Freemarker fills placeholders → LibreOffice (Linux) or Word (Windows) renders PDF
+    implementation 'fr.opensagres.xdocreport:fr.opensagres.xdocreport.core:2.0.3'
+    implementation 'fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.docx:2.0.3'
+    implementation 'fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.freemarker:2.0.3'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
